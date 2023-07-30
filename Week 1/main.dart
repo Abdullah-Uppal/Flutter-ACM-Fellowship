@@ -43,9 +43,18 @@ void main() async {
   print(moreNumbers);
 
   // consuming stream function
+  print("Consuming stream function");
   await for (var number in myStream(10)) {
     print(number);
   }
+  streamConsumer(myStream(10));
+  streamConsumer(myStream(10)); 
+
+  // school
+  var school = School<Student>([]);
+  school.addStudent(Student("Abdullah", 10, "The Educators"));
+  school.addStudent(Student("Ali", 10, "The Educators"));
+  print(school.students);
 }
 
 int sum(int a, int b) {
@@ -65,6 +74,12 @@ Stream<int> myStream(int upto) async* {
   }
 }
 
+void streamConsumer(Stream<int> stream) {
+  stream.listen((event) {
+    print(event);
+  });
+}
+
 class Person {
   String name;
   int age;
@@ -75,9 +90,39 @@ class Person {
 class Student extends Person {
   String school;
   Student(String name, int age, this.school) : super(name, age);
+
+  @override
+  String toString() {
+    return "Student: $name, $age, $school";
+  }
 }
+
 // teacher
 class Teacher extends Person {
   String subject;
   Teacher(String name, int age, this.subject) : super(name, age);
+}
+
+// generics
+class School<T extends Person> {
+  List<T> students = [];
+  // staff room
+  // let's say for now that only teachers are allowed
+  StaffRoom<Teacher> staffRoom = StaffRoom<Teacher>([]);
+  // this fails
+  // StaffRoom<Student> staffRoomFailed = StaffRoom<Student>([]);
+  School(this.students);
+  void addStudent(T student) {
+    students.add(student);
+  }
+}
+
+// staff room
+// let's say for now that only teachers are allowed
+class StaffRoom<T extends Teacher> {
+  List<T> staff = [];
+  StaffRoom(this.staff);
+  void addStaff(T staff) {
+    this.staff.add(staff);
+  }
 }
