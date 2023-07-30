@@ -54,7 +54,19 @@ void main() async {
   var school = School<Student>([]);
   school.addStudent(Student("Abdullah", 10, "The Educators"));
   school.addStudent(Student("Ali", 10, "The Educators"));
+  school.addStudent(Student("Ahmed", 20, "The Educators"));
+  school.addStudent(Student("Ahsan", 11, "The Educators"));
+  school.addStudent(Student("Ammar", 22, "The Educators"));
   print(school.students);
+  // pattern matchin
+  school.students.forEach((student) {
+    switch (student.age) {
+      case <= 10: print("Your age is less than 10"); 
+      case >= 10 && <= 20: print("Are you teenager?"); 
+      // /default case
+      case _ : print("You are old");
+    }
+  });
 }
 
 int sum(int a, int b) {
