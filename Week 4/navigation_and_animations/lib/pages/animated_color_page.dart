@@ -41,7 +41,7 @@ class _AnimatedColorPageState extends State<AnimatedColorPage>
           children: [
             ColoredBox(
               color: _color,
-              child: SizedBox(
+              child: const SizedBox(
                 height: 200,
                 width: 200,
               ),

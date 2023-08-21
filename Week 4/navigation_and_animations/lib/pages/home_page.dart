@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             FilledButton(onPressed: () {
               Navigator.of(context).pushNamed(RoutePaths.animatedColor);
-            }, child: Text("Animated Color")),
+            }, child: const Text("Animated Color")),
           ],
         ),
       ),

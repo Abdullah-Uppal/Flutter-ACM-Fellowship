@@ -41,9 +41,6 @@ class _LogoPageState extends State<LogoPage>
                   });
                   return;
                 }
-                setState(() {
-                  size = 200;
-                });
               },
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
